@@ -1,0 +1,17 @@
+.aside_panel{
+    width: 20%;
+  }
+  .nav_left_panel{
+    display: flex;
+    flex-direction: column;
+  }
+  .nav_link{
+    transition-property: all;
+    margin-bottom: 10%;
+    color: black;
+    text-decoration: none;
+  }
+  .nav_link:hover{
+    transition: 0.25s;
+    color: rgb(34, 34, 214);
+  }

@@ -1,0 +1,27 @@
+.main_content{
+    position: relative;
+    width: 80%;
+    
+  }
+.avatar_box{
+    width: 200px;
+    height: 250px;
+  }
+  .avatar{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .personal_info{
+    display: flex;
+    
+  }
+  .info_box{
+    width: 30%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+  }
+  .description_personal{
+    margin-top: 2em;
+  }

@@ -1,0 +1,23 @@
+.logo {
+    width: 50px;
+  }
+  .fixed_head{
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #f5f5f5;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10%;
+    
+  }
+  .headTitle{
+    cursor:default;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.5em;
+  }
