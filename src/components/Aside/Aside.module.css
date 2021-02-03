@@ -1,7 +1,7 @@
 .aside_panel{
     width: 20%;
   }
-  .nav_left_panel{
+.nav_left_panel{
     display: flex;
     flex-direction: column;
   }

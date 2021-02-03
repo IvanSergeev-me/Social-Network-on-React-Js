@@ -12,14 +12,12 @@
 .wrapper{
   margin-top: var(--header_heigth);
   position: relative;
-  padding: 0 10%;
+  padding: 0 20%;
   
 }
 .section_main{
-  
   position: relative;
   display: flex;
-  justify-content: space-between;
 
 }
 

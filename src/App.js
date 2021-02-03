@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header';
-import MainSection from './components/MainSection';
-import './styles/Aside.css';
-import './styles/Header.css';
-import './styles/Profile.css';
+import Header from './components/Header/Header.jsx';
+import MainSection from './components/MainSection.jsx';
+import {BrowserRouter} from "react-router-dom";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <MainSection/>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header/>
+        <MainSection/>
+      </div>
+    </BrowserRouter>
   );
 }
 
