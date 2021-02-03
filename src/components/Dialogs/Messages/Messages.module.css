@@ -1,0 +1,11 @@
+.messages{
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 5%;
+    height: 70vh;
+    overflow: auto;
+}

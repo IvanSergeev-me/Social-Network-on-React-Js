@@ -8,7 +8,9 @@
   --header_heigth: 100px;
 }
 /*Согласно методологии БЭМ необходимо разбить css файл на модули*/
-
+html {
+  overflow-y: scroll;
+}
 .wrapper{
   margin-top: var(--header_heigth);
   position: relative;
@@ -16,6 +18,8 @@
   
 }
 .section_main{
+  box-sizing: border-box;
+  justify-content: center;
   position: relative;
   display: flex;
 

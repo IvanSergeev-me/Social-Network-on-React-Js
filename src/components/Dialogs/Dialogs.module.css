@@ -1,0 +1,15 @@
+.main_content{
+    position: relative;
+    width: 60%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.dialogs_list{
+    display: flex;
+    flex-direction: column;
+}
+
+.active_dialogs div{
+    margin-top: 32%;
+}

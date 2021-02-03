@@ -1,0 +1,12 @@
+.activeDialog{
+    
+}
+.NavLink_activeDialog{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    
+}
+.NavLink_activeDialog:hover{
+    color: rgb(34, 34, 214);
+}
