@@ -8,7 +8,7 @@ const ProfileInfo = () =>{
                   <img src="https://www.tvcnews.tv/wp-content/uploads/2020/10/g-logo.png" className={s.avatar}></img>
                 </div>
                 <div className={s.info_box}>
-                    <h2 class="title_second">
+                    <h2 className="title_second">
                       Иван Сергеев
                     </h2>
                     <p className={s.description_personal}>

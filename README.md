@@ -34,3 +34,15 @@ import {BrowserRouter} from "react-router-dom"; и обернуть в тег <B
         </div>
 	 );
  };
+9. Надо разделять BLL(business logic layer) и UI. Массивы данных для пропсов можно хранить в массивах
+BLL - прослойка, в которой хранятся данные. Пример реализации BLL - Redux
+10. Для больших массивов данных можно использовать функцию map, чтобы преобразовать данные в компоненты.
+Пример: 
+let postContent = [
+        {name:"Канеки Кен",time:"20 минут назад", avatar:"https://i1.sndcdn.com/avatars-000649708704-q87cpn-t500x500.jpg", picture:"",content:"Я- Гуль"},
+        {name:"Канеки Кен",time:"21 минут назад", avatar:"https://i1.sndcdn.com/avatars-000649708704-q87cpn-t500x500.jpg", picture:"",content:"Лелелелт ми дай"},
+        {name:"Канеки Кен",time:"22 минут назад", avatar:"https://i1.sndcdn.com/avatars-000649708704-q87cpn-t500x500.jpg", picture:"",content:"Айм э пойсон рейн ви вонт вулд сурвайв"},
+    ];
+    let posts_arr = postContent.map(
+        post_object =>  <Post name={post_object.name} time={post_object.time} avatar={post_object.avatar} picture={post_object.picture} content={post_object.content}/>
+    );

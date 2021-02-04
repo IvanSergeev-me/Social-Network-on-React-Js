@@ -7,16 +7,16 @@ import News from './News/News.jsx';
 import Settings from './Settings/Settings.jsx';
 import {Route} from "react-router-dom";
 
-const MainSection = () =>{
+const MainSection = (props) =>{
     return(
         
         <main className="wrapper section_main">
             <Aside/>
-            <Route path="/Profile" component={Profile}/>
-            <Route path="/Dialogs" component={Dialogs}/>
-            <Route path="/Friends" component={Friends}/>
-            <Route path="/News" component={News}/>
-            <Route path="/Settings" component={Settings}/>
+            <Route path="/Profile" render={()=><Profile profilePage={props.profilePage}/>}/>
+            <Route path="/Dialogs" render={()=><Dialogs messagesPage={props.messagesPage}/>} />
+            <Route path="/Friends" render={Friends}/>
+            <Route path="/News" render={News}/>
+            <Route path="/Settings" render={Settings}/>
         </main>
         
     );

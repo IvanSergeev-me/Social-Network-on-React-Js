@@ -7,12 +7,12 @@ import {BrowserRouter} from "react-router-dom";
 
 
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
         <Header/>
-        <MainSection/>
+        <MainSection profilePage={props.appState.profilePage} messagesPage={props.appState.messagesPage}/>
       </div>
     </BrowserRouter>
   );
