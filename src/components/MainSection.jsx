@@ -12,7 +12,7 @@ const MainSection = (props) =>{
         
         <main className="wrapper section_main">
             <Aside/>
-            <Route path="/Profile" render={()=><Profile profilePage={props.profilePage} addPost={props.addPost}/>}/>
+            <Route path="/Profile" render={()=><Profile profilePage={props.profilePage} addPost={props.addPost} updatePostText={props.updatePostText}/>}/>
             <Route path="/Dialogs" render={()=><Dialogs messagesPage={props.messagesPage}/>} />
             <Route path="/Friends" render={Friends}/>
             <Route path="/News" render={News}/>

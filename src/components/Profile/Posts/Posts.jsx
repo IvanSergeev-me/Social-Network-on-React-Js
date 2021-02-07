@@ -9,15 +9,18 @@ const Posts = (props) =>{
     );
     let getPostContent = React.createRef();
     let addPost = (event) =>{
-        let postContent = getPostContent.current.value;
-        props.addPost(postContent);
+        props.addPost();
         event.preventDefault();
     };
+    let onNewPostChange = () =>{
+        let postContent = getPostContent.current.value;
+        props.updatePostText(postContent);
+    }
     return(
         <div>
             <div className={s.form_container}>
                 <form className={s.form} action="#">
-                    <textarea ref={getPostContent} placeholder="Напишите о чем-нибудь, что вас волнует..." className={s.textarea} ></textarea>
+                    <textarea onChange={onNewPostChange} ref={getPostContent} value={props.newPostContent} placeholder="Напишите о чем-нибудь, что вас волнует..." className={s.textarea}/>
                     <button onClick={addPost} className={s.send}>Отправить</button>
                 </form>
             </div>
