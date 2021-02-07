@@ -46,3 +46,7 @@ let postContent = [
     let posts_arr = postContent.map(
         post_object =>  <Post name={post_object.name} time={post_object.time} avatar={post_object.avatar} picture={post_object.picture} content={post_object.content}/>
     );
+11. Получить ссылку на элемент можно с помощью тега ref, установленного на искомом элементе. В ref передаем переменную , которой
+приравниваем значение React.createRef(); Получить значение с элемента можно вызвав метод current у заданной переменной. current вернет сам элемент, поэтому
+надо вызвать current.value
+12. REDUX - реализация архитектуры FLUX .

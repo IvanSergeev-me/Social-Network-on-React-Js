@@ -16,7 +16,15 @@ const Messages = (props) =>{
 
     return(
             <div className={s.messages}>
-                {messages_arr}
+                <div className={s.messages_array}>
+                    {messages_arr}  
+                </div>
+                <div className={s.form_container}>
+                    <form className={s.form} action="#">
+                        <textarea  placeholder="Напишите сообщение..." className={s.textarea} ></textarea>
+                        <button  className={s.send}>Отправить</button>
+                    </form>
+                 </div>
             </div>
     );
 };

@@ -12,7 +12,7 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <Header/>
-        <MainSection profilePage={props.appState.profilePage} messagesPage={props.appState.messagesPage}/>
+        <MainSection profilePage={props.appState.profilePage} messagesPage={props.appState.messagesPage} addPost={props.addPost}/>
       </div>
     </BrowserRouter>
   );
