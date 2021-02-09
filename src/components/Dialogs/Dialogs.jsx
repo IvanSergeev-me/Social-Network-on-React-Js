@@ -21,7 +21,7 @@ const Dialogs = (props) =>{
                     {dialogs_arr}
                 </div>
             </div>
-            <Messages messageData={props.messagesPage.messageData}/>
+            <Messages messageData={props.messagesPage.messageData} dispatch={props.dispatch} newMessageContent={props.messagesPage.newMessageContent}/>
         </section>
     );
 };

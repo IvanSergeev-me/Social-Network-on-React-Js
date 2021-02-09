@@ -1,8 +1,10 @@
 import React from 'react';
 import s from './Messages.module.css';
-import Message from './Message/Message.jsx'
+import Message from './Message/Message.jsx';
+import {onNewMessageChangeActionCreator,addMessageActionCreator} from '../../../redux/messages-reducer.js';
 
 const Messages = (props) =>{
+    
     let messageData = props.messageData;
     let messages_arr = 
         messageData.map(message_object => 
@@ -13,7 +15,22 @@ const Messages = (props) =>{
                 text={message_object.text} 
                 sender_id={message_object.sender_id} 
                 sender_avatar={message_object.sender_avatar}/>);
-
+    let getMessageContent = React.createRef();
+    let onNewMessageChange = () =>{
+        if(getMessageContent.current.scrollTop > 0){
+            getMessageContent.current.style.height = getMessageContent.current.scrollHeight + "px";
+        }
+        else{
+            getMessageContent.current.style.height = "auto";
+        };
+        let messageContent = getMessageContent.current.value;
+        props.dispatch(onNewMessageChangeActionCreator(messageContent));
+    };
+    let addMessage = (event) =>{
+        props.dispatch(addMessageActionCreator());
+        getMessageContent.current.style.height = "auto";
+        event.preventDefault();
+    };
     return(
             <div className={s.messages}>
                 <div className={s.messages_array}>
@@ -21,8 +38,8 @@ const Messages = (props) =>{
                 </div>
                 <div className={s.form_container}>
                     <form className={s.form} action="#">
-                        <textarea  placeholder="Напишите сообщение..." className={s.textarea} ></textarea>
-                        <button  className={s.send}>Отправить</button>
+                        <textarea  placeholder="Напишите сообщение..." className={s.textarea} ref={getMessageContent}  value={props.newMessageContent} onChange={onNewMessageChange}/>
+                        <button onClick={addMessage} className={s.send}>Отправить</button>
                     </form>
                  </div>
             </div>

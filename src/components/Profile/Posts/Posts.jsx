@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post/Post.jsx';
-import {addPostActionCreator , onNewPostChangeActionCreator} from '../../../redux/state.js'
+import {addPostActionCreator , onNewPostChangeActionCreator} from '../../../redux/profile-reducer.js'
 
 const Posts = (props) =>{
     let postContent = props.postContent;
@@ -11,12 +11,19 @@ const Posts = (props) =>{
     let getPostContent = React.createRef();
     let addPost = (event) =>{
         props.dispatch(addPostActionCreator());
+        getPostContent.current.style.height = "auto";
         event.preventDefault();
     };
     let onNewPostChange = () =>{
+        if(getPostContent.current.scrollTop > 0){
+            getPostContent.current.style.height = getPostContent.current.scrollHeight + "px";
+        }
+        else{
+            getPostContent.current.style.height = "auto";
+        };
         let postContent = getPostContent.current.value;
         props.dispatch(onNewPostChangeActionCreator(postContent));
-    }
+    };
     return(
         <div>
             <div className={s.form_container}>

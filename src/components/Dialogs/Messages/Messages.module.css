@@ -30,6 +30,7 @@
     border: 1px solid rgb(137, 137, 255);
     border-radius: 5px;
     transition-property: all;
+    overflow: hidden;
 }
 .textarea:hover{
     border: 1px solid rgb(79, 79, 255);
