@@ -11,7 +11,7 @@ import App from './App';
 let tree = () =>{
   ReactDOM.render(
     <React.StrictMode>
-      <App appState = {store.getState()} addPost={store.addPost.bind(store)} updatePostText={store.updatePostText.bind(store)}/>
+      <App appState = {store.getState()} dispatch={store.dispatch.bind(store)}/>
     </React.StrictMode>,
     document.getElementById('root')
   );

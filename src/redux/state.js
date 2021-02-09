@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
+
 let store = {
     _state :{
         profilePage:{
@@ -24,11 +27,10 @@ let store = {
                 {name: "Саня", user_id: "3"},
                 {name: "Володя", user_id: "4"},
             ]
-        },
-        
+        }
     },
     _renderTree(){},
-    addPost(){
+    _addPost(){
         let postContent = this._state.profilePage.newPostContent;
         if (postContent!=""){
             let newPost = {
@@ -40,18 +42,28 @@ let store = {
             };
             this._state.profilePage.postContent.push(newPost);
         };
-        this.updatePostText("");
+        this._updatePostText("");
         this._renderTree();
     },
-    updatePostText(postContent){
+    _updatePostText(postContent){
         this._state.profilePage.newPostContent = postContent;
         this._renderTree();
     },
     render_(observer){this._renderTree = observer},
     getState(){
         return this._state;
+    },
+    dispatch(action){
+        if (action.type === "ADD-POST"){
+            this._addPost();
+        }
+        else if (action.type === "UPDATE-POST-TEXT"){
+            this._updatePostText(action.postContent);
+        }
     }
 };
 export default store;
-window.store = store;
+export const addPostActionCreator = () =>({type:ADD_POST});
+export const onNewPostChangeActionCreator = (postContent) =>({type:UPDATE_POST_TEXT, postContent:postContent});
 
+window.store = store;
