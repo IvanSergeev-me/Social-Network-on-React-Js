@@ -12,8 +12,8 @@ const MainSection = (props) =>{
         
         <main className="wrapper section_main">
             <Aside/>
-            <Route path="/Profile" render={()=><Profile profilePage={props.profilePage} dispatch={props.dispatch}/>}/>
-            <Route path="/Dialogs" render={()=><Dialogs messagesPage={props.messagesPage} dispatch={props.dispatch}/>} />
+            <Route path="/Profile" render={()=><Profile store={props.store}/>}/>
+            <Route path="/Dialogs" render={()=><Dialogs store={props.store}/>} />
             <Route path="/Friends" render={Friends}/>
             <Route path="/News" render={News}/>
             <Route path="/Settings" render={Settings}/>

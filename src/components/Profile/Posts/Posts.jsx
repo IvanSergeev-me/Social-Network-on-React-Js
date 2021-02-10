@@ -10,7 +10,7 @@ const Posts = (props) =>{
     );
     let getPostContent = React.createRef();
     let addPost = (event) =>{
-        props.dispatch(addPostActionCreator());
+        props.addPost();
         getPostContent.current.style.height = "auto";
         event.preventDefault();
     };
@@ -22,7 +22,7 @@ const Posts = (props) =>{
             getPostContent.current.style.height = "auto";
         };
         let postContent = getPostContent.current.value;
-        props.dispatch(onNewPostChangeActionCreator(postContent));
+        props.onNewPostChange(postContent);
     };
     return(
         <div>

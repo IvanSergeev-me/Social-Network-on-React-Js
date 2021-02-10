@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import ActiveDialog from './ActiveDialog/ActiveDialog.jsx'
-import Messages from './Messages/Messages.jsx'
+import MessagesContainerComponent from './Messages/MessagesContainerComponent.jsx'
 
 
 const Dialogs = (props) =>{
-    let dialogData = props.messagesPage.dialogData;
+    let dialogData = props.store.getState().messagesPage.dialogData;
     let dialogs_arr = 
         dialogData.map( dialog => 
             <ActiveDialog 
@@ -21,7 +21,7 @@ const Dialogs = (props) =>{
                     {dialogs_arr}
                 </div>
             </div>
-            <Messages messageData={props.messagesPage.messageData} dispatch={props.dispatch} newMessageContent={props.messagesPage.newMessageContent}/>
+            <MessagesContainerComponent store={props.store}/>
         </section>
     );
 };

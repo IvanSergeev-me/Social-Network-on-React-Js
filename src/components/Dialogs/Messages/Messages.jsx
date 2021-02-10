@@ -24,10 +24,10 @@ const Messages = (props) =>{
             getMessageContent.current.style.height = "auto";
         };
         let messageContent = getMessageContent.current.value;
-        props.dispatch(onNewMessageChangeActionCreator(messageContent));
+        props.onNewMessageChange(messageContent);
     };
     let addMessage = (event) =>{
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
         getMessageContent.current.style.height = "auto";
         event.preventDefault();
     };

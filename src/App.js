@@ -12,7 +12,7 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <Header/>
-        <MainSection profilePage={props.appState.profilePage} messagesPage={props.appState.messagesPage} dispatch={props.dispatch}/>
+        <MainSection profilePage={props.appState.profilePage} messagesPage={props.appState.messagesPage} dispatch={props.dispatch} store={props.store}/>
       </div>
     </BrowserRouter>
   );
