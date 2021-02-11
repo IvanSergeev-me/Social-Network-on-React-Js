@@ -9,6 +9,7 @@ const Messages = (props) =>{
     let messages_arr = 
         messageData.map(message_object => 
             <Message 
+                key={message_object.id}
                 id={message_object.id}
                 sender_name={message_object.sender_name}
                 send_time={message_object.send_time} 

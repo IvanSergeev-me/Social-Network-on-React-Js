@@ -6,7 +6,13 @@ import {addPostActionCreator , onNewPostChangeActionCreator} from '../../../redu
 const Posts = (props) =>{
     let postContent = props.postContent;
     let posts_arr = postContent.map(
-        post_object =>  <Post name={post_object.name} time={post_object.time} avatar={post_object.avatar} picture={post_object.picture} content={post_object.content}/>
+        post_object =>  <Post
+            key={post_object.id} 
+            name={post_object.name} 
+            time={post_object.time} 
+            avatar={post_object.avatar} 
+            picture={post_object.picture} 
+            content={post_object.content}/>
     );
     let getPostContent = React.createRef();
     let addPost = (event) =>{

@@ -4,23 +4,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {BrowserRouter} from "react-router-dom";
+import { Provider } from 'react-redux';
 
 
 
 
-let tree = (state) =>{
   ReactDOM.render(
-    <React.StrictMode>
-      <App appState = {state} dispatch={store.dispatch.bind(store)} store={store}/>
-    </React.StrictMode>,
+    <BrowserRouter>
+      
+        <React.StrictMode>
+          <App store={store}/>
+        </React.StrictMode>
+      
+    </BrowserRouter>,
     document.getElementById('root')
+
   );
-};
-tree(store.getState());
-store.subscribe(()=>{
-  let state = store.getState();
-  tree(state);
-});
+
+
+window.store = store;
   /*
   let tree = (state) =>{
     ReactDOM.render(

@@ -1,5 +1,6 @@
 const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_DIALOG = "ADD-DIALOG";
 
 let initialState = {
     messageData:[
@@ -20,26 +21,31 @@ let initialState = {
     newMessageContent:""
 };
 const messagesReducer = (state = initialState, action ) =>{
+    let stateLocal = {...state};
     switch (action.type){
         case ADD_MESSAGE:
-            let messageContent = state.newMessageContent;
+            let messageContent = stateLocal.newMessageContent;
             if (messageContent!=""){
                 let newMessage = {
-                    id:"1",
+                    id:"7",
                     text:messageContent,
                     sender_id:"1", 
                     sender_avatar:"https://i1.sndcdn.com/avatars-000649708704-q87cpn-t500x500.jpg", 
                     sender_name:"Канеки Кен", 
                     send_time:"12:00"
                 };
-                state.messageData.push(newMessage);
+                stateLocal.messageData = [...state.messageData];
+                stateLocal.messageData.push(newMessage);
             };
-            state.newMessageContent = "";
-            return state;
+            stateLocal.newMessageContent = "";
+            return stateLocal;
         case UPDATE_MESSAGE_TEXT:
-            state.newMessageContent = action.messageContent;
-            return state;
-        default: return state; 
+            stateLocal.newMessageContent = action.messageContent;
+            return stateLocal;
+        case ADD_DIALOG:
+            stateLocal.dialogData = [...state.dialogData];
+            return stateLocal;
+        default: return stateLocal; 
     };
     
 };

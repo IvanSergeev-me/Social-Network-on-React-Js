@@ -5,10 +5,11 @@ import MessagesContainerComponent from './Messages/MessagesContainerComponent.js
 
 
 const Dialogs = (props) =>{
-    let dialogData = props.store.getState().messagesPage.dialogData;
+    let dialogData = props.messagesPage.dialogData;
     let dialogs_arr = 
         dialogData.map( dialog => 
             <ActiveDialog 
+                key={dialog.user_id}
                 name={dialog.name}  
                 user_id={dialog.user_id}/>);
         
