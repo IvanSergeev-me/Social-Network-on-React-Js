@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Messages.module.css';
 import Message from './Message/Message.jsx';
-import {onNewMessageChangeActionCreator,addMessageActionCreator} from '../../../redux/messages-reducer.js';
 
 const Messages = (props) =>{
     

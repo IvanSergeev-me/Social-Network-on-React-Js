@@ -1,7 +1,8 @@
 .logo {
     width: 50px;
-  }
-  .fixed_head{
+}
+
+.fixed_head {
     z-index: 2;
     top: 0;
     left: 0;
@@ -13,11 +14,30 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20%;
-    
-  }
-  .headTitle{
-    cursor:default;
+}
+
+.headTitle {
+    cursor: default;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.5em;
-  }
+}
+
+.header_left {
+    display: flex;
+    align-items: center;
+}
+
+.authorisation {
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: black;
+    transition-property: all;
+}
+
+.authorisation:hover {
+    color: #242424;
+    transition: 0.25s;
+}

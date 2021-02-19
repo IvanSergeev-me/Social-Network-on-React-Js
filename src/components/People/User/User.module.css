@@ -1,0 +1,102 @@
+.user_body{
+    position: relative;
+    align-items: center;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: 5%;
+}
+.user_avatar_container{
+    
+    width: 100%;
+}
+.user_avatar_container img{
+    cursor: pointer;
+    border-radius: 50%;
+    width: 100%;
+    object-fit: contain;
+}
+.personalInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.full_name{
+    display: flex;
+    align-items: flex-end;
+}
+.name{
+    color: black;
+    font-size: 1.3em;
+    cursor: pointer;
+    font-weight: 600;
+}
+.age{
+    color: gray;
+    font-size: 1.15em;
+}
+.location{
+    display: flex;
+    align-items: center;
+   
+    color: gray;
+    font-size: 0.8em;
+    
+}
+.location span{
+    cursor: pointer;
+    white-space:nowrap;
+}
+.status{
+    text-align: center;
+    font-size: 1em;
+    color: black;
+}
+.followers{
+    
+    display: flex;
+    align-items: center;
+    
+}
+.followers_title{
+    white-space:nowrap;
+    font-size: 0.8em;
+    color: gray;
+}
+.follow_button{
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(137, 137, 255);
+    color: black;
+    background-color: white;
+    font-size: 0.8em;
+    padding: 0.3em;
+    border-radius: 10px;
+    outline: none;   
+    transition-property: all;
+}
+.unfollow_button{
+    transition-property: all;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(255, 50, 50);
+    color: black;
+    background-color: white;
+    font-size: 0.8em;
+    padding: 0.3em;
+    border-radius: 10px;
+    outline: none; 
+}
+.unfollow_button:hover{
+    
+    transition: 0.3s;
+    font-weight: 600;
+    background-color: rgb(255, 50, 50);
+}
+.follow_button:hover{
+    transition: 0.3s;
+    font-weight: 600;
+    background-color: rgb(137, 137, 255);
+}

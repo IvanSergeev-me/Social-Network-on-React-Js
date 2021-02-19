@@ -21,11 +21,10 @@ let initialState = {
     newMessageContent:""
 };
 const messagesReducer = (state = initialState, action ) =>{
-    let stateLocal = {...state};
     switch (action.type){
-        case ADD_MESSAGE:
-            let messageContent = stateLocal.newMessageContent;
-            if (messageContent!=""){
+        case ADD_MESSAGE:    
+            let messageContent = state.newMessageContent;
+            if (messageContent!=="" && messageContent!==undefined && messageContent!==null){
                 let newMessage = {
                     id:"7",
                     text:messageContent,
@@ -34,18 +33,24 @@ const messagesReducer = (state = initialState, action ) =>{
                     sender_name:"Канеки Кен", 
                     send_time:"12:00"
                 };
-                stateLocal.messageData = [...state.messageData];
-                stateLocal.messageData.push(newMessage);
+                return {
+                    ...state,
+                    newMessageContent:'',
+                    messageData: [...state.messageData, newMessage]
+                };  
             };
-            stateLocal.newMessageContent = "";
-            return stateLocal;
         case UPDATE_MESSAGE_TEXT:
-            stateLocal.newMessageContent = action.messageContent;
-            return stateLocal;
+            return{
+                ...state,
+                newMessageContent:action.messageContent
+            };
         case ADD_DIALOG:
-            stateLocal.dialogData = [...state.dialogData];
-            return stateLocal;
-        default: return stateLocal; 
+           return{
+               ...state,
+               dialogData: [...state.dialogData]
+        };
+            
+        default: return state;  
     };
     
 };

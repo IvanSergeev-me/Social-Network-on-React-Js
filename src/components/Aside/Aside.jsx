@@ -9,6 +9,7 @@ const Aside = () =>{
                 <NavLink to="/Profile" className={s.nav_link}>Профиль</NavLink>
                 <NavLink to="/Dialogs" className={s.nav_link}>Сообщения</NavLink>
                 <NavLink to="/Friends" className={s.nav_link}>Друзья</NavLink>
+                <NavLink to="/People" className={s.nav_link}>Люди</NavLink>
                 <NavLink to="/News" className={s.nav_link}>Лента</NavLink>
                 <NavLink to="/Settings" className={s.nav_link}>Настройки</NavLink>
               </nav>

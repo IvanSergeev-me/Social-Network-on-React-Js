@@ -7,7 +7,7 @@ import PostsContainerComponent from './Posts/PostsContainerComponent';
 const Profile = (props) =>{
     return(
         <section className={s.main_content}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <PostsContainerComponent store={props.store}/>
         </section>
         
