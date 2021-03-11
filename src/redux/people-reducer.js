@@ -1,4 +1,4 @@
-import {getUsersAPI, getMoreUsersAPI, followAPI, unfollowAPI} from '../API/API.js';
+import {UsersAPI} from '../API/API.js';
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -82,7 +82,7 @@ export const toggleFollowing = () => ({type:TOGGLE_FOLLOWING});
 export const getUsersThunk = (currentPage, pageSize) =>{
     return (dispatch) =>{
         dispatch(toggleFetching());
-        getUsersAPI(currentPage, pageSize)
+        UsersAPI.getUsers(currentPage, pageSize)
         .then(response => {
             dispatch(setUsers(response.data.items));
             dispatch(toggleFetching());
@@ -97,7 +97,7 @@ export const getMoreUsersThunk = (thispage, pageSize) =>{
         dispatch(toggleFetching());
             thispage++;
             dispatch(setPage(thispage));
-            getMoreUsersAPI(thispage,pageSize)
+            UsersAPI.getMoreUsers(thispage,pageSize)
             .then(response => {
                 dispatch(setUsers(response.data.items));
                 dispatch(toggleFetching());
@@ -108,7 +108,7 @@ export const getMoreUsersThunk = (thispage, pageSize) =>{
 export const followThunk = (id) =>{
     return(dispatch) =>{
         dispatch(toggleFollowing());
-        followAPI(id)
+        UsersAPI.follow(id)
         .then(response => {
            if (response.data.resultCode === 0){
                 dispatch(follow(id));
@@ -120,7 +120,7 @@ export const followThunk = (id) =>{
 export const unfollowThunk = (id) =>{
     return(dispatch) =>{
         dispatch(toggleFollowing());
-        unfollowAPI(id)
+        UsersAPI.unfollow(id)
         .then(response => {
             if (response.data.resultCode === 0){
                 dispatch(unfollow(id));

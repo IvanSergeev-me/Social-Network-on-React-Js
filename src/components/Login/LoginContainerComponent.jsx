@@ -1,7 +1,8 @@
 import React from 'react';
 import Login from './Login.jsx';
 import { connect } from 'react-redux';
-class ProfileContainerComponent extends React.Component {
+
+class LoginContainerComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -12,7 +13,8 @@ class ProfileContainerComponent extends React.Component {
     };
     render(){
         return(
-            <Login/>
+           // {this.props.isAuth?:}
+            <Login store={this.props.store}/>
         );
         
     };
@@ -22,4 +24,5 @@ let mapStateToProps = (state) => ({
     
 });
 
-export default connect(mapStateToProps, {})(Login) ;
+
+export default connect(mapStateToProps, {})(LoginContainerComponent) ;

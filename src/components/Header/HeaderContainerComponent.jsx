@@ -11,8 +11,11 @@ class HeaderClass extends React.Component{
     };
     componentDidMount() {
         this.props.getAuthorisedThunk();
+        
     };
+    
     render() {
+        console.log("authorised is: " +this.props.auth.isAuth+" as "+ this.props.authorisedUserId)
         return (
           
            <Header auth={this.props.auth}/>
@@ -23,7 +26,8 @@ class HeaderClass extends React.Component{
 let mapStateToProps = (state) =>{
     
     return {
-        auth: state.auth
+        auth: state.auth,
+        authorisedUserId:state.auth.data.id,
     };
 };
 const HeaderContainerComponent = connect(mapStateToProps, {getAuthorisedThunk})(HeaderClass);

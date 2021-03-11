@@ -30,7 +30,6 @@ export const getAuthorisedThunk = () =>{
     return(dispatch) =>{
         getAuthorisedAPI()
         .then(response => {
-            
            if(response.data.resultCode === 0){
             dispatch(setUserData(response.data));
            };

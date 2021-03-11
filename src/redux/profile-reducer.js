@@ -1,8 +1,9 @@
-import {getAuthorisedAPI, getProfileAPI} from '../API/API.js';
+import {getAuthorisedAPI, ProfileAPI} from '../API/API.js';
 
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
-const SET_USER_PROFILE = "SET_USER_PROFILE"
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS = "SET-USER-STATUS";
 
 let initialState = {
     postContent:[
@@ -11,7 +12,8 @@ let initialState = {
         {id: "3", name:"Канеки Кен",time:"22 минут назад", avatar:"https://i1.sndcdn.com/avatars-000649708704-q87cpn-t500x500.jpg", picture:"https://images.freeimages.com/images/small-previews/904/blue-1185044.jpg",content:"Айм э пойсон рейн ви вонт вулд сурвайв"},
     ],
     newPostContent:"",
-    profile:null
+    profile:null,
+    status:""
 };
 const profileReducer = (state = initialState, action ) =>{
     switch (action.type){  
@@ -42,6 +44,11 @@ const profileReducer = (state = initialState, action ) =>{
                 ...state,
                 profile:action.profile
             };
+        case SET_USER_STATUS:
+            return{
+                ...state,
+                status:action.status
+            };    
         default: return state; 
     };
     
@@ -49,13 +56,33 @@ const profileReducer = (state = initialState, action ) =>{
 export const addPostActionCreator = () =>({type:ADD_POST});
 export const onNewPostChangeActionCreator = (postContent) =>({type:UPDATE_POST_TEXT, postContent:postContent});
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile:profile});
+export const setUserStatus = (status) => ({type:SET_USER_STATUS, status:status});
+
+
 export const setUserProfileThunk = (userId) =>{
     return(dispatch) =>{
-        getProfileAPI(userId)
+        ProfileAPI.getProfile(userId)
         .then(response => {
            dispatch(setUserProfile(response.data));
         });
     };
 };
-
+export const getUserStatusThunk = (userId) =>{
+    return(dispatch) =>{
+        ProfileAPI.getStatus(userId)
+        .then(response =>{
+            dispatch(setUserStatus(response.data));
+        });
+    };
+};
+export const updateUserStatusThunk = (status) =>{
+    return(dispatch) =>{
+        ProfileAPI.updateStatus(status)
+        .then(response =>{
+            if(response.data.resultCode === 0){
+                dispatch(setUserStatus(status));
+            };
+        });
+    };
+};
 export default profileReducer;

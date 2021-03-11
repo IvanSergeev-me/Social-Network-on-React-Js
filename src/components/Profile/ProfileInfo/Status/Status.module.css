@@ -1,0 +1,11 @@
+.input_area{
+    border: none;
+    resize: none;
+    font-size: 1em;
+    outline: none;
+    background-color: #dcdcdc;
+}
+.status_area{
+    width: 100%;
+    min-height: 2em;
+}

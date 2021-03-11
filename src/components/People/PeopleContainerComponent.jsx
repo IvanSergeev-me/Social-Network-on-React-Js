@@ -3,6 +3,7 @@ import React from 'react';
 import { toggleFollowing,getUsersThunk,getMoreUsersThunk ,followThunk,unfollowThunk} from '../../redux/people-reducer.js';
 import People from './People.jsx';
 import Preloader from '../common/Preloader/Preloader.jsx';
+import { compose } from 'redux';
 class PeopleClass extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,7 @@ class PeopleClass extends React.Component {
     };
 
     componentDidMount() {
-        
+        console.log("peoplemounted")
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
          /*
         Код без thunk
@@ -39,7 +40,9 @@ class PeopleClass extends React.Component {
         });
         */
     };
-    
+    componentDidUpdate(){
+        console.log("peopleupd")
+    }
     render() {
 
         return (
@@ -94,9 +97,6 @@ let mapStateToProps = (state) =>{
         }
     };
 };*/
-const PeopleContainerComponent = connect(mapStateToProps, { 
-    
-      toggleFollowing, getUsersThunk,
-      getMoreUsersThunk ,followThunk,unfollowThunk})(PeopleClass);
+//const PeopleContainerComponent = (PeopleClass);
 
-export default PeopleContainerComponent;
+export default compose(connect(mapStateToProps, { toggleFollowing, getUsersThunk,getMoreUsersThunk ,followThunk,unfollowThunk}))(PeopleClass);

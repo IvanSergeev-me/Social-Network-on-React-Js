@@ -1,4 +1,4 @@
-import messagesReducer from './messages-reducer.js';
+/*import messagesReducer from './messages-reducer.js';
 import profileReducer from './profile-reducer.js';
 
 let store = {
@@ -44,3 +44,4 @@ let store = {
 };
 export default store;
 window.store = store;
+*/

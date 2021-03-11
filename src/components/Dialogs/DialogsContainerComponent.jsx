@@ -1,11 +1,13 @@
 import React from 'react';
 import Dialogs from './Dialogs.jsx';
 import { connect } from 'react-redux';
+import {withAuthRedirectComponent} from '../../HOC/AuthRedirect.js';
+import { compose } from 'redux';
 
 let mapStateToProps = (state) =>{
     return {
-        messagesPage: state.messagesPage,
-        isAuth: state.auth.isAuth
+        messagesPage: state.messagesPage
+        
     };
 };
 let mapDispatchToProps = (dispatch) =>{
@@ -13,6 +15,13 @@ let mapDispatchToProps = (dispatch) =>{
         
     };
 };
-const DialogsContainerComponent = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirectComponent)(Dialogs);
 
-export default DialogsContainerComponent;
+/*
+Функция compose позволяет избежать многократного оборачивания элементов и сократить код.
+
+let AuthRedirectComponent = withAuthRedirectComponent(Dialogs);
+
+const DialogsContainerComponent = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);*/
+
+export default compose(connect(mapStateToProps, mapDispatchToProps) ,withAuthRedirectComponent)(Dialogs);

@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import ActiveDialog from './ActiveDialog/ActiveDialog.jsx'
 import MessagesContainerComponent from './Messages/MessagesContainerComponent.jsx'
+import { Redirect } from 'react-router-dom';
 
 
 const Dialogs = (props) =>{
@@ -12,7 +13,9 @@ const Dialogs = (props) =>{
                 key={dialog.user_id}
                 name={dialog.name}  
                 user_id={dialog.user_id}/>);
-        
+    if (!props.isAuth){
+        return <Redirect to="/Login"/>
+    };
       
     return(
         <section className={s.main_content}>
