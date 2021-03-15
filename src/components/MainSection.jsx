@@ -22,7 +22,7 @@ const MainSection = (props) =>{
             <Route path="/People" render={()=> <PeopleContainerComponent store={props.store}/>}/>
             <Route path="/News" render={()=> <NewsContainerComponent store={props.store}/>}/>
             <Route path="/Settings" render={()=> <SettingsContainerComponent store={props.store}/>}/>
-            <Route path="/Login" render={()=> <Login store={props.store}/>}/>
+            <Route path="/Login" render={()=> <LoginContainerComponent store={props.store}/>}/>
         </main>
         
     );

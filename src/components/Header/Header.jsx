@@ -9,7 +9,7 @@ const Header = (props) =>{
         <div className={s.header_left}>
           <img src="https://www.tvcnews.tv/wp-content/uploads/2020/10/g-logo.png" className={s.logo}></img>
           
-            {props.auth.isAuth?<div className={s.authorisation}>Выйти</div>:<NavLink className={s.authorisation} to={'/Login'}>Войти</NavLink>}
+            {props.auth.isAuth?<div className={s.authorisation} onClick={props.logoutThunk}>Выйти</div>:<NavLink className={s.authorisation} to={'/Login'}>Войти</NavLink>}
         </div>
         <h1  className={s.headTitle}>social network</h1>
       </header >

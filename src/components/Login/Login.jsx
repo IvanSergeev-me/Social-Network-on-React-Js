@@ -2,7 +2,14 @@ import React from 'react';
 import s from './Login.module.css';
 import home from '../../assets/images/home.svg';
 import { Field, reduxForm } from 'redux-form';
+import {requiredField, maxLength} from '../../assets/utils/validators/validator.js';
+import { Input } from '../common/forms/input';
+
 const Login = (props) =>{
+    const onSubmit = (data) =>{
+        
+        props.loginThunk(data);
+    }
     
     return(
         <section className={s.login_section}>
@@ -24,7 +31,7 @@ const Login = (props) =>{
                         <h2 className={s.title_login_above_form}>
                             Авторизация
                         </h2>
-                        <LoginReduxForm/>
+                        <LoginReduxForm onSubmit={onSubmit}/>
                     </div>
                 </div>
                 
@@ -34,11 +41,12 @@ const Login = (props) =>{
 };
 const LoginForm = (props) =>{
     return(
-        <form className={s.login_form}>
-            <Field name="Login" placeholder={"Введите ваш логин"} className={s.login_form__input} type="text" component={"input"}/>
-            <Field name="Password" placeholder={"Пароль"} className={s.login_form__input} type="password" component={"input"}/>
+        <form className={s.login_form} onSubmit={props.handleSubmit}>
+            {props.error?<div className={s.form_login_password_error}>{props.error}</div>:null}
+            <Field validate={[requiredField,maxLength]} name="Email" placeholder={"Введите вашу почту"}  type="text" component={Input}/>
+            <Field validate={[requiredField,maxLength]} name="Password" placeholder={"Пароль"}  type="password" component={Input}/>
             <div className={s.login_form__checkbox_container}>
-                <Field name="rememberMe" component={"input"} className={s.login_form__checkbox_container_checkbox} id="checkbox_rememberme" name="checkbox_rememberme" type="checkbox"/> 
+                <Field name="rememberMe" component={"input"} className={s.login_form__checkbox_container_checkbox} id="checkbox_rememberme" type="checkbox"/> 
                 <label htmlFor="checkbox_rememberme" className={s.login_form__checkbox_container_text}>Запомнить меня</label>
             </div>
             <div className={s.login_form__buttons}>
@@ -49,10 +57,12 @@ const LoginForm = (props) =>{
                     Зарегистрироваться
                 </button>
             </div>
+
         </form>
     );
 };
 const LoginReduxForm = reduxForm({
     form:"loginForm"
 })(LoginForm);
+
 export default Login;

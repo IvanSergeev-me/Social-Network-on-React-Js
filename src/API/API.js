@@ -30,6 +30,14 @@ export const ProfileAPI = {
         return instance.put(`profile/status`, {status:status})
     }
 };
+export const LoginApi = {
+    loginMe(email, password, rememberMe=false){
+        return instance.post(`auth/login`, {email, password, rememberMe});
+    },
+    logoutMe(){
+        return instance.delete(`auth/login`);
+    }
+}
 export const getAuthorisedAPI = () =>{
     return instance.get(`auth/me`)
 };

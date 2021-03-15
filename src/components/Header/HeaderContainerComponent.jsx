@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import {getAuthorisedThunk} from '../../redux/auth-reducer';
+import {getAuthorisedThunk,logoutThunk} from '../../redux/auth-reducer';
 import Header from './Header';
 import { getAuthorisedAPI } from '../../API/API';
 class HeaderClass extends React.Component{
@@ -18,7 +18,7 @@ class HeaderClass extends React.Component{
         console.log("authorised is: " +this.props.auth.isAuth+" as "+ this.props.authorisedUserId)
         return (
           
-           <Header auth={this.props.auth}/>
+           <Header auth={this.props.auth} logoutThunk={this.props.logoutThunk}/>
         );
     };
 
@@ -30,6 +30,6 @@ let mapStateToProps = (state) =>{
         authorisedUserId:state.auth.data.id,
     };
 };
-const HeaderContainerComponent = connect(mapStateToProps, {getAuthorisedThunk})(HeaderClass);
+const HeaderContainerComponent = connect(mapStateToProps, {getAuthorisedThunk,logoutThunk})(HeaderClass);
 
 export default HeaderContainerComponent;

@@ -75,5 +75,7 @@
 .post_content{
     margin-top: 2%;
     position: relative;
+    text-align: left;
+    word-break: break-word;
 
 }

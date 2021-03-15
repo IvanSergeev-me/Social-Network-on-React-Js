@@ -1,7 +1,11 @@
 import React from 'react';
 import s from './Posts.module.css';
 import Post from './Post/Post.jsx';
-import {addPostActionCreator , onNewPostChangeActionCreator} from '../../../redux/profile-reducer.js'
+import { Field, reduxForm } from 'redux-form';
+import { Textarea } from '../../common/forms/textarea';
+import { maxLength, requiredField } from '../../../assets/utils/validators/validator';
+
+//let getPostContent = React.createRef();
 
 const Posts = (props) =>{
     let postContent = props.postContent;
@@ -14,13 +18,17 @@ const Posts = (props) =>{
             picture={post_object.picture} 
             content={post_object.content}/>
     );
-    let getPostContent = React.createRef();
-    let addPost = (event) =>{
-        props.addPost();
-        getPostContent.current.style.height = "auto";
-        event.preventDefault();
+   
+    let addPost = (values) =>{
+    
+        props.addPost(values.newPostContent);
+        
+        //console.log(getPostContent.current);
+        //getPostContent.current.style.height = "auto";
+        //event.preventDefault();
+        
     };
-    let onNewPostChange = () =>{
+    /*let onNewPostChange = () =>{
         if(getPostContent.current.scrollTop > 0){
             getPostContent.current.style.height = getPostContent.current.scrollHeight + "px";
         }
@@ -29,14 +37,11 @@ const Posts = (props) =>{
         };
         let postContent = getPostContent.current.value;
         props.onNewPostChange(postContent);
-    };
+    };*/
     return(
         <div>
             <div className={s.form_container}>
-                <form className={s.form} action="#">
-                    <textarea onChange={onNewPostChange} ref={getPostContent} value={props.newPostContent} placeholder="Напишите о чем-нибудь, что вас волнует..." className={s.textarea}/>
-                    <button onClick={addPost} className={s.send}>Отправить</button>
-                </form>
+                <AddPostsForm onSubmit={addPost}/>
             </div>
             <div className={s.posts_lists}>
                 {posts_arr}
@@ -44,5 +49,15 @@ const Posts = (props) =>{
         </div>
     );
 };
-
+const PostsForm = (props) =>{
+    return(
+        <form onSubmit={props.handleSubmit} className={s.form} >
+            <Field  validate={[maxLength]} component={Textarea} name={"newPostContent"} placeholder="Напишите о чем-нибудь, что вас волнует..." />
+            <button className={s.send}>Отправить</button>
+        </form>
+    );
+};
+const AddPostsForm = reduxForm({
+    form:"addPostsForm"
+})(PostsForm);
 export default Posts;

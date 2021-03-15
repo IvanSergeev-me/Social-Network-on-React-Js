@@ -1,6 +1,8 @@
 import React from 'react';
 import Login from './Login.jsx';
 import { connect } from 'react-redux';
+import {loginThunk} from '../../redux/auth-reducer.js';
+import { Redirect } from 'react-router';
 
 class LoginContainerComponent extends React.Component {
     constructor(props) {
@@ -12,17 +14,18 @@ class LoginContainerComponent extends React.Component {
         
     };
     render(){
+        if(this.props.isAuth)return<Redirect to="/Profile"/>;
         return(
-           // {this.props.isAuth?:}
-            <Login store={this.props.store}/>
+           
+            <Login loginThunk={this.props.loginThunk}/>
         );
         
     };
 };
 
 let mapStateToProps = (state) => ({
-    
+    isAuth: state.auth.isAuth
 });
 
 
-export default connect(mapStateToProps, {})(LoginContainerComponent) ;
+export default connect(mapStateToProps, {loginThunk})(LoginContainerComponent) ;

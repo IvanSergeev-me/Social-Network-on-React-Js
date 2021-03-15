@@ -13,14 +13,18 @@ class ProfileContainerComponent extends React.Component {
 
 
     };
+    //I_v_anSergeev!1337
     componentDidUpdate(){
         console.log("profupd")
-        let userId = this.props.match.params.userID;
-        if (!userId) {
-            userId = this.props.authorisedUserId;
-        };
-        this.props.setUserProfileThunk(userId);
-        this.props.getUserStatusThunk(userId);
+       
+        
+            let userId = this.props.match.params.userID;
+            if (!userId) {
+                userId = this.props.authorisedUserId;
+                this.props.setUserProfileThunk(userId);
+                this.props.getUserStatusThunk(userId);
+            };
+            
         
     };
     componentDidMount(){
@@ -29,10 +33,11 @@ class ProfileContainerComponent extends React.Component {
             let userId = this.props.match.params.userID;
             if (!userId) {
                 userId = this.props.authorisedUserId;
+                
             };
             this.props.setUserProfileThunk(userId);
             this.props.getUserStatusThunk(userId);
-        },1000);
+        },100);
     };
     render(){
         return(
