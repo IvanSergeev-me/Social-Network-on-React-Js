@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Status.module.css';
 
+//Эта компонента была написана без использования хуков
 class Status extends React.Component{
     constructor(props) {
         super(props);

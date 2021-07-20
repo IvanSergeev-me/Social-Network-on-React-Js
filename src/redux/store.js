@@ -1,3 +1,4 @@
+//Этот файл представляет собой самописный Store из Redux
 /*import messagesReducer from './messages-reducer.js';
 import profileReducer from './profile-reducer.js';
 

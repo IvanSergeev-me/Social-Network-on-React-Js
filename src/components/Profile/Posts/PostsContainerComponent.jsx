@@ -17,6 +17,18 @@ const PostsContainerComponent = (props) =>{
         <Posts onNewPostChange={onNewPostChange} addPost={addPost} newPostContent={state.profilePage.newPostContent} postContent={state.profilePage.postContent}/>
     );
 };*/
+class PostsClass extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    addPost = (values) =>{
+        this.props.addPost(values);
+    }
+    render(){
+        
+        return <Posts newPostContent={this.props.newPostContent} postContent={this.props.postContent} addPost={this.addPost}/>
+    }
+}
 let mapStateToProps = (state) =>{
     return {
         newPostContent: state.profilePage.newPostContent,
@@ -32,6 +44,6 @@ let mapDispatchToProps = (dispatch) =>{
         }
     };
 };
-const PostsContainerComponent = connect(mapStateToProps, mapDispatchToProps)(Posts);
+const PostsContainerComponent = connect(mapStateToProps, mapDispatchToProps)(PostsClass);
 
 export default PostsContainerComponent;

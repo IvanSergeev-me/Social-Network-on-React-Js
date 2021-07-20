@@ -31,12 +31,13 @@ const authReducer = (state = initialState, action) => {
 export const setUserData = (userData, isAuth) => ({type:SET_USER_DATA, userData:userData, isAuth:isAuth});
 export const  getAuthorisedThunk = () =>{
     return(dispatch) =>{
-        getAuthorisedAPI()
+        return getAuthorisedAPI()
         .then(response => {
            if(response.data.resultCode === 0){
             dispatch(setUserData(response.data, true));
            };
         });
+        
     };
 };
 export const loginThunk = (data) =>{

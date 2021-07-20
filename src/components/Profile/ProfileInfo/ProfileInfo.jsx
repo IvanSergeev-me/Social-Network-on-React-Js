@@ -1,7 +1,7 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
-import Status from './Status/Status.jsx';
+import Status from './Status/StatusHooks.jsx';
 
 const ProfileInfo = (props) =>{
     const default_image = "https://www.tvcnews.tv/wp-content/uploads/2020/10/g-logo.png";
@@ -27,10 +27,3 @@ const ProfileInfo = (props) =>{
     );
 };
 export default ProfileInfo;
-
-/*
-  Сергеев Иван Николаевич, первоклассный 
-                      Front-end разработчик, который на высочайшем уровне знает 
-                      React и Redux.
-                      Место обучения: Московский Политехнический Университет. 
-*/

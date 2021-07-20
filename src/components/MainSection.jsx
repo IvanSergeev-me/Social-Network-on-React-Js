@@ -15,14 +15,14 @@ const MainSection = (props) =>{
     return(
         
         <main className="wrapper section_main">
-            <AsideContainerComponent store={props.store}/>
-            <Route path="/Profile/:userID?" render={()=><ProfileContainerComponent store={props.store}/>}/>
-            <Route path="/Dialogs" render={()=><DialogsContainerComponent store={props.store}/>} />
-            <Route path="/Friends" render={()=> <FriendsContainerComponent store={props.store}/>}/>
-            <Route path="/People" render={()=> <PeopleContainerComponent store={props.store}/>}/>
-            <Route path="/News" render={()=> <NewsContainerComponent store={props.store}/>}/>
-            <Route path="/Settings" render={()=> <SettingsContainerComponent store={props.store}/>}/>
-            <Route path="/Login" render={()=> <LoginContainerComponent store={props.store}/>}/>
+            <AsideContainerComponent />
+            <Route path="/Profile/:userID?" render={()=><ProfileContainerComponent />}/>
+            <Route path="/Dialogs" render={()=><DialogsContainerComponent />} />
+            <Route path="/Friends" render={()=> <FriendsContainerComponent />}/>
+            <Route path="/People" render={()=> <PeopleContainerComponent />}/>
+            <Route path="/News" render={()=> <NewsContainerComponent />}/>
+            <Route path="/Settings" render={()=> <SettingsContainerComponent />}/>
+            <Route path="/Login" render={()=> <LoginContainerComponent />}/>
         </main>
         
     );

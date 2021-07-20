@@ -1,10 +1,11 @@
 .message{
-    width: 100%;
+    width: 99.5%;
     border-bottom: 1px solid #dcdcdc;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     padding: 1%;
+    box-sizing: border-box;
     
 }
 .message:hover{

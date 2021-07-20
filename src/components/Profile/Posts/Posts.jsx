@@ -18,11 +18,10 @@ const Posts = (props) =>{
             picture={post_object.picture} 
             content={post_object.content}/>
     );
-   
+        
     let addPost = (values) =>{
     
-        props.addPost(values.newPostContent);
-        
+        props.addPost(values.newPostContent);     
         //console.log(getPostContent.current);
         //getPostContent.current.style.height = "auto";
         //event.preventDefault();

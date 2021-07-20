@@ -7,12 +7,13 @@ import {Redirect} from 'react-router-dom';
 import {withAuthRedirectComponent} from '../../HOC/AuthRedirect.js';
 import { compose } from 'redux';
 
-class ProfileContainerComponent extends React.Component {
+class ProfileContainerComponent extends React.PureComponent {
     constructor(props) {
         super(props);
 
 
     };
+    isProfileSetted = false;
     //I_v_anSergeev!1337
     componentDidUpdate(){
         console.log("profupd")
@@ -21,27 +22,35 @@ class ProfileContainerComponent extends React.Component {
             let userId = this.props.match.params.userID;
             if (!userId) {
                 userId = this.props.authorisedUserId;
-                this.props.setUserProfileThunk(userId);
-                this.props.getUserStatusThunk(userId);
+                if(!this.isProfileSetted){
+                    console.log("profupd if")
+                    this.props.getUserStatusThunk(userId);
+                    this.props.setUserProfileThunk(userId);
+                    this.isProfileSetted = true;
+                }
+                
+                
             };
             
         
     };
     componentDidMount(){
         console.log("profmounted")
+        this.isProfileSetted = false;
         setTimeout(()=>{
             let userId = this.props.match.params.userID;
             if (!userId) {
                 userId = this.props.authorisedUserId;
                 
             };
-            this.props.setUserProfileThunk(userId);
             this.props.getUserStatusThunk(userId);
+            this.props.setUserProfileThunk(userId);
+
         },100);
     };
     render(){
         return(
-            <Profile store={this.props.store} profile={this.props.profile} updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}/>
+            <Profile profile={this.props.profile} updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}/>
         );
         
     };

@@ -9,10 +9,7 @@ class HeaderClass extends React.Component{
 
 
     };
-    componentDidMount() {
-        this.props.getAuthorisedThunk();
-        
-    };
+    
     
     render() {
         console.log("authorised is: " +this.props.auth.isAuth+" as "+ this.props.authorisedUserId)
