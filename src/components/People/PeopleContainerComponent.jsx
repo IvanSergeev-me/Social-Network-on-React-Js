@@ -9,7 +9,6 @@ class PeopleClass extends React.Component {
         super(props);
 
     };
-
     getMoreUsers = (event, thispage) => {
         this.props.getMoreUsersThunk(thispage, this.props.pageSize);
         event.preventDefault();
@@ -21,28 +20,9 @@ class PeopleClass extends React.Component {
     unfollow =(id) =>{
         this.props.unfollowThunk(id);
     };
-
     componentDidMount() {
-        console.log("peoplemounted")
         this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
-         /*
-        Код без thunk
-        this.props.toggleFetching();
-        getUsersAPI(this.props.currentPage, this.props.pageSize)
-        .then(response => {
-            this.props.setUsers(
-                response.data.items
-            );
-            this.props.toggleFetching();
-            this.props.setTotalCount(
-                response.data.totalCount
-            );
-        });
-        */
     };
-    componentDidUpdate(){
-        console.log("peopleupd")
-    }
     render() {
 
         return (
@@ -72,31 +52,6 @@ let mapStateToProps = (state) =>{
         isFollowing:state.peoplePage.isFollowing
     };
 };
-/*let mapDispatchToProps = (dispatch) =>{
-    return {
-        follow: (user_id) =>{
-            dispatch(followAC(user_id));
-        },
-       unfollow: (user_id) =>{
-            dispatch(unfollowAC(user_id));
-        },
-        setUsers:(users)=>{
-            dispatch(setUserAC(users));
-        },
-        setPage:(currentPage)=>{
-            dispatch(setPageAC(currentPage));
-        },
-        getMoreUsers:()=>{
-            dispatch(getMoreUsersAC());
-        },
-        setTotalCount:(totalCount)=>{
-            dispatch(setTotalCountAC(totalCount));
-        },
-        toggleFetching:()=>{
-            dispatch(toggleFetchingAC());
-        }
-    };
-};*/
-//const PeopleContainerComponent = (PeopleClass);
+
 
 export default compose(connect(mapStateToProps, { toggleFollowing, getUsersThunk,getMoreUsersThunk ,followThunk,unfollowThunk}))(PeopleClass);

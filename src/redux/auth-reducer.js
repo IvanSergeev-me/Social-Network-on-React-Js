@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form';
 import {getAuthorisedAPI, LoginApi} from '../API/API.js';
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "auth-reducer/SET_USER_DATA";
 
 let initialState = {
     resultCode: null,
@@ -15,10 +15,8 @@ let initialState = {
     isAuth:false
 };
 const authReducer = (state = initialState, action) => {
-    
     switch (action.type) {
-        case SET_USER_DATA:
-            
+        case SET_USER_DATA:            
             return {
                 ...state,
                 data: action.userData.data,
@@ -29,37 +27,24 @@ const authReducer = (state = initialState, action) => {
 };
 
 export const setUserData = (userData, isAuth) => ({type:SET_USER_DATA, userData:userData, isAuth:isAuth});
-export const  getAuthorisedThunk = () =>{
-    return(dispatch) =>{
-        return getAuthorisedAPI()
-        .then(response => {
+export const  getAuthorisedThunk = () => async (dispatch) =>{
+        let response = await getAuthorisedAPI();
            if(response.data.resultCode === 0){
             dispatch(setUserData(response.data, true));
-           };
-        });
-        
+           }; 
     };
-};
-export const loginThunk = (data) =>{
-    return(dispatch) =>{
-        LoginApi.loginMe(data.Email, data.Password, data.rememberMe)
-        .then(response => {
-           if(response.data.resultCode === 0){
+export const loginThunk = (data) => async (dispatch) =>{
+        let response = await LoginApi.loginMe(data.Email, data.Password, data.rememberMe);
+        if(response.data.resultCode === 0){
                 dispatch(getAuthorisedThunk());
            }
-           else{
+        else{
                let message = response.messages;
-               
                 dispatch(stopSubmit("loginForm", {_error:message}));
-           };
-        });
+        };
     };
-};
-export const  logoutThunk = () =>{
-    
-    return(dispatch) =>{
-        LoginApi.logoutMe()
-        .then(response => {
+export const logoutThunk = () => async (dispatch) =>{
+        let response = await LoginApi.logoutMe();
            if(response.data.resultCode === 0){
             dispatch(setUserData({resultCode: null,
                 messages: [],
@@ -70,8 +55,7 @@ export const  logoutThunk = () =>{
                 },
                 isFetching: false}, false));
            };
-        });
     };
-};
+
 
 export default authReducer;

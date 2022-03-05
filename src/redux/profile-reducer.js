@@ -1,8 +1,8 @@
-import {getAuthorisedAPI, ProfileAPI} from '../API/API.js';
+import {ProfileAPI} from '../API/API.js';
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET-USER-STATUS";
+const ADD_POST = "profile-reducer/ADD-POST";
+const SET_USER_PROFILE = "profile-reducer/SET_USER_PROFILE";
+const SET_USER_STATUS = "profile-reducer/SET-USER-STATUS";
 
 let initialState = {
     postContent:[
@@ -49,30 +49,18 @@ export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile:prof
 export const setUserStatus = (status) => ({type:SET_USER_STATUS, status:status});
 
 
-export const setUserProfileThunk = (userId) =>{
-    return(dispatch) =>{
-        ProfileAPI.getProfile(userId)
-        .then(response => {
+export const setUserProfileThunk = (userId) => async (dispatch) => {
+    let response = await ProfileAPI.getProfile(userId);
            dispatch(setUserProfile(response.data));
-        });
-    };
 };
-export const getUserStatusThunk = (userId) =>{
-    return(dispatch) =>{
-        ProfileAPI.getStatus(userId)
-        .then(response =>{
+export const getUserStatusThunk = (userId) => async (dispatch) =>{
+    let response = await ProfileAPI.getStatus(userId);
             dispatch(setUserStatus(response.data));
-        });
-    };
 };
-export const updateUserStatusThunk = (status) =>{
-    return(dispatch) =>{
-        ProfileAPI.updateStatus(status)
-        .then(response =>{
+export const updateUserStatusThunk = (status) => async (dispatch) =>{
+    let response = await ProfileAPI.updateStatus(status);
             if(response.data.resultCode === 0){
                 dispatch(setUserStatus(status));
             };
-        });
-    };
 };
 export default profileReducer;

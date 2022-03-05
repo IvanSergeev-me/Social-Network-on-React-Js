@@ -1,7 +1,6 @@
-import { stopSubmit } from 'redux-form';
 import {getAuthorisedThunk} from './auth-reducer';
 
-const SET_INIT = "SET_INIT";
+const SET_INIT = "app-reducer/SET_INIT";
 
 let initialState = {
     initialised:false
@@ -20,13 +19,11 @@ const appReducer = (state = initialState, action) => {
 };
 
 export const setIniatialised = () => ({type:SET_INIT});
-export const  initialize = () =>{
-    return(dispatch) =>{
+export const  initialize = () => async (dispatch) =>{
         let authoriseResult = dispatch(getAuthorisedThunk());
         Promise.all([authoriseResult]).then(()=>{
             dispatch(setIniatialised())
         });
         
     };
-};
 export default appReducer;

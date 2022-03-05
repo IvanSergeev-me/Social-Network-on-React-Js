@@ -1,6 +1,6 @@
 const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const ADD_DIALOG = "ADD-DIALOG";
+const ADD_MESSAGE = "messages-reducer/ADD-MESSAGE";
+const ADD_DIALOG = "messages-reducer/ADD-DIALOG";
 
 let initialState = {
     messageData:[

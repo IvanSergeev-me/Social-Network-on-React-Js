@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './User.module.css';
-import { unfollowAPI, followAPI } from '../../../API/API';
 
 class User extends React.Component{
     constructor(props) {

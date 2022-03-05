@@ -3,9 +3,8 @@ import s from './Posts.module.css';
 import Post from './Post/Post.jsx';
 import { Field, reduxForm } from 'redux-form';
 import { Textarea } from '../../common/forms/textarea';
-import { maxLength, requiredField } from '../../../assets/utils/validators/validator';
+import { maxLength } from '../../../assets/utils/validators/validator';
 
-//let getPostContent = React.createRef();
 
 const Posts = (props) =>{
     let postContent = props.postContent;
@@ -20,23 +19,9 @@ const Posts = (props) =>{
     );
         
     let addPost = (values) =>{
-    
-        props.addPost(values.newPostContent);     
-        //console.log(getPostContent.current);
-        //getPostContent.current.style.height = "auto";
-        //event.preventDefault();
+        props.addPost(values.newPostContent);
         
     };
-    /*let onNewPostChange = () =>{
-        if(getPostContent.current.scrollTop > 0){
-            getPostContent.current.style.height = getPostContent.current.scrollHeight + "px";
-        }
-        else{
-            getPostContent.current.style.height = "auto";
-        };
-        let postContent = getPostContent.current.value;
-        props.onNewPostChange(postContent);
-    };*/
     return(
         <div>
             <div className={s.form_container}>

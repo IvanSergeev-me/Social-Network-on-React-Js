@@ -17,7 +17,6 @@ const StatusHooks = (props) =>{
         setStatus(e.currentTarget.value);
         
     };
-    console.log("sts-rend")
     return(
             <div>
                 {editMode?

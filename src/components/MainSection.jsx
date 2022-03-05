@@ -1,5 +1,5 @@
 import React from 'react';
-import AsideContainerComponent from './Aside/AsideContainerComponent.jsx';
+import Aside from './Aside/Aside.jsx';
 import {Route} from "react-router-dom";
 
 import DialogsContainerComponent from './Dialogs/DialogsContainerComponent.jsx';
@@ -9,13 +9,12 @@ import LoginContainerComponent from './Login/LoginContainerComponent.jsx';
 import NewsContainerComponent from './News/NewsContainerComponent.jsx';
 import SettingsContainerComponent from './Settings/SettingsContainerComponent.jsx';
 import FriendsContainerComponent from './Friends/FriendsContainerComponent.jsx';
-import Login from './Login/Login.jsx';
 
 const MainSection = (props) =>{
     return(
         
         <main className="wrapper section_main">
-            <AsideContainerComponent />
+            <Aside />
             <Route path="/Profile/:userID?" render={()=><ProfileContainerComponent />}/>
             <Route path="/Dialogs" render={()=><DialogsContainerComponent />} />
             <Route path="/Friends" render={()=> <FriendsContainerComponent />}/>
