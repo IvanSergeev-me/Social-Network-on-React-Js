@@ -11,9 +11,7 @@ const TOGGLE_FETCHING = "people-reducer/SET_FETCHING";
 const TOGGLE_FOLLOWING = "people-reducer/SET_FOLLOWING";
 
 let initialState = {
-    users: [
-        
-    ],
+    users: [],
     totalUsersCount: 0,
     currentPage: 1,
     pageSize:9,

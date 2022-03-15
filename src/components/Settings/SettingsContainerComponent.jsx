@@ -2,13 +2,11 @@ import React from 'react';
 import Settings from './Settings.jsx';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import {withAuthRedirectComponent} from '../../HOC/AuthRedirect.js';
+import {withAuthRedirectComponent} from '../../HOC/withAuthRedirect.js';
 
 class SettingsContainerComponent extends React.Component {
     constructor(props) {
         super(props);
-
-
     };
     componentDidUpdate(){
         console.log("settingsupdated")

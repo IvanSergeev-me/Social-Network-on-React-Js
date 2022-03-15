@@ -24,7 +24,6 @@ class ProfileContainerComponent extends React.PureComponent {
         
     };
     componentDidMount(){
-        console.log("profmounted")
         this.isProfileSetted = false;
         setTimeout(()=>{
             let userId = this.props.match.params.userID;

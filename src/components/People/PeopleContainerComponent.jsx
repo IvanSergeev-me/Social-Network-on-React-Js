@@ -21,7 +21,10 @@ class PeopleClass extends React.Component {
         this.props.unfollowThunk(id);
     };
     componentDidMount() {
-        this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
+        if(this.props.users.length === 0){
+            this.props.getUsersThunk(this.props.currentPage, this.props.pageSize);
+        }
+        
     };
     render() {
 
