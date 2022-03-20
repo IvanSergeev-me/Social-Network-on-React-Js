@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import {setUserProfileThunk, getUserStatusThunk, updateUserStatusThunk} from '../../redux/profile-reducer'
+import {setUserProfileThunk, getUserStatusThunk, updateUserStatusThunk, loadPictureThunk} from '../../redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
@@ -10,35 +10,26 @@ class ProfileContainerComponent extends React.PureComponent {
     constructor(props) {
         super(props);
     };
-    isProfileSetted = false;
-    componentDidUpdate(){
-            let userId = this.props.match.params.userID;
-            if (!userId) {
-                userId = this.props.authorisedUserId;
-                if(!this.isProfileSetted){
-                    this.props.getUserStatusThunk(userId);
-                    this.props.setUserProfileThunk(userId);
-                    this.isProfileSetted = true;
-                }     
-            };     
-        
+    refreshProfile(){
+        let userId = this.props.match.params.userID;
+        if (!userId)
+            userId = this.props.authorisedUserId;    
+        this.props.getUserStatusThunk(userId);
+        this.props.setUserProfileThunk(userId);
+    }
+    componentDidUpdate(prevProps, ){
+        if(this.props.match.params.userID !== prevProps.match.params.userID)
+            this.refreshProfile();    
     };
     componentDidMount(){
-        this.isProfileSetted = false;
-        setTimeout(()=>{
-            let userId = this.props.match.params.userID;
-            if (!userId) {
-                userId = this.props.authorisedUserId;
-                
-            };
-            this.props.getUserStatusThunk(userId);
-            this.props.setUserProfileThunk(userId);
-
-        },100);
+        this.refreshProfile();
     };
     render(){
         return(
-            <Profile profile={this.props.profile} updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}/>
+            <Profile authorisedUserId={this.props.authorisedUserId} profile={this.props.profile} 
+            updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}
+            loadPicture={this.props.loadPictureThunk}
+            />
         );      
     };
 };
@@ -48,6 +39,6 @@ let mapStateToProps = (state) => ({
     status:state.profilePage.status
     
 });
-export default compose(connect(mapStateToProps, {setUserProfileThunk,getUserStatusThunk,updateUserStatusThunk})
+export default compose(connect(mapStateToProps, {setUserProfileThunk,getUserStatusThunk,updateUserStatusThunk, loadPictureThunk})
 ,withRouter
 )(ProfileContainerComponent);

@@ -28,6 +28,13 @@ export const ProfileAPI = {
     },
     updateStatus(status){
         return instance.put(`profile/status`, {status:status})
+    },
+    loadPicture(file){
+        const formData = new FormData();
+        formData.append("image", file);
+        return instance.put(`profile/photo`, formData, {
+            headers:{'Content-Type': 'multipart/form-data'}
+        })
     }
 };
 export const LoginApi = {

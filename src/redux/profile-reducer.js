@@ -3,6 +3,7 @@ import {ProfileAPI} from '../API/API.js';
 const ADD_POST = "profile-reducer/ADD-POST";
 const SET_USER_PROFILE = "profile-reducer/SET_USER_PROFILE";
 const SET_USER_STATUS = "profile-reducer/SET-USER-STATUS";
+const LOAD_PICTURE = "profile-reducer/LOAD_PICTURE";
 
 let initialState = {
     postContent:[
@@ -39,7 +40,12 @@ const profileReducer = (state = initialState, action ) =>{
             return{
                 ...state,
                 status:action.status
-            };    
+            };  
+        case LOAD_PICTURE:
+            return{
+                ...state,
+                profile:{...state.profile, photos:action.photos}
+            }  
         default: return state; 
     };
     
@@ -47,20 +53,27 @@ const profileReducer = (state = initialState, action ) =>{
 export const addPostActionCreator = (newPostContent) =>({type:ADD_POST, newPostContent});
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile:profile});
 export const setUserStatus = (status) => ({type:SET_USER_STATUS, status:status});
+export const loadPictureSuccess = (photos) => ({type:LOAD_PICTURE, photos})
 
 
 export const setUserProfileThunk = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getProfile(userId);
-           dispatch(setUserProfile(response.data));
+        dispatch(setUserProfile(response.data));
 };
 export const getUserStatusThunk = (userId) => async (dispatch) =>{
     let response = await ProfileAPI.getStatus(userId);
-            dispatch(setUserStatus(response.data));
+        dispatch(setUserStatus(response.data));
 };
 export const updateUserStatusThunk = (status) => async (dispatch) =>{
     let response = await ProfileAPI.updateStatus(status);
-            if(response.data.resultCode === 0){
-                dispatch(setUserStatus(status));
-            };
+        if(response.data.resultCode === 0){
+            dispatch(setUserStatus(status));
+        };
+};
+export const loadPictureThunk = (file) => async (dispatch) =>{
+    let response = await ProfileAPI.loadPicture(file);
+    if(response.data.resultCode === 0){
+        dispatch(loadPictureSuccess(response.data.data.photos));
+    };
 };
 export default profileReducer;
