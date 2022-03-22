@@ -6,8 +6,9 @@ import PostsContainerComponent from './Posts/PostsContainerComponent';
 const Profile = (props) =>{
     return(
         <section className={s.main_content}>
-            <ProfileInfo authorisedUserId={props.authorisedUserId} profile={props.profile} loadPicture={props.loadPicture}  status={props.status} updateUserStatusThunk={props.updateUserStatusThunk}/>
-            <PostsContainerComponent store={props.store}/>
+            <ProfileInfo authorisedUserId={props.authorisedUserId} profile={props.profile} loadPicture={props.loadPicture}  
+            status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} isOwner={props.isOwner}/>
+            <PostsContainerComponent />
         </section>
         
     );

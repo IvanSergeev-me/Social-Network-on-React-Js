@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {setUserProfileThunk, getUserStatusThunk, updateUserStatusThunk, loadPictureThunk} from '../../redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import Preloader from '../common/Preloader/Preloader';
 
 //Use password - I_v_anSergeev!1337
 class ProfileContainerComponent extends React.PureComponent {
@@ -17,7 +18,7 @@ class ProfileContainerComponent extends React.PureComponent {
         this.props.getUserStatusThunk(userId);
         this.props.setUserProfileThunk(userId);
     }
-    componentDidUpdate(prevProps, ){
+    componentDidUpdate(prevProps){
         if(this.props.match.params.userID !== prevProps.match.params.userID)
             this.refreshProfile();    
     };
@@ -25,10 +26,16 @@ class ProfileContainerComponent extends React.PureComponent {
         this.refreshProfile();
     };
     render(){
+        
+        if (!this.props.profile){
+            return(<Preloader/>)
+        }
+        //Не работает без приведения типов - странно
+        let isOwner = (this.props.authorisedUserId == this.props.profile.userId);
         return(
             <Profile authorisedUserId={this.props.authorisedUserId} profile={this.props.profile} 
             updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}
-            loadPicture={this.props.loadPictureThunk}
+            loadPicture={this.props.loadPictureThunk} isOwner={isOwner}
             />
         );      
     };

@@ -2,7 +2,6 @@
     width: 100%;
 }
 .login_form__input{
-    margin-top: 1em;
     box-sizing: border-box;
     width: 100%;
     padding: 1em;
@@ -12,8 +11,6 @@
     transition-property: all;
     overflow: hidden;
     font-size: 1em;
-  
- 
 }
 .login_form__input:hover{
     border: 1px solid rgb(79, 79, 255);
