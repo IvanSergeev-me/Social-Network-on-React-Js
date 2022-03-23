@@ -35,6 +35,9 @@ export const ProfileAPI = {
         return instance.put(`profile/photo`, formData, {
             headers:{'Content-Type': 'multipart/form-data'}
         })
+    },
+    saveProfile(profileData){
+        return instance.put(`profile`, profileData)
     }
 };
 export const LoginApi = {

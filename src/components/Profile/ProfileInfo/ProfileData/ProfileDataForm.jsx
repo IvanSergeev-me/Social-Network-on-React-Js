@@ -4,9 +4,11 @@ import { createField , Input, Textarea} from "../../../common/forms/FormControls
 import s from '../ProfileInfo.module.css';
 import Contacts from "./Contacts/Contacts";
 
-const ProfileDataForm = ({profile}) =>{
+const ProfileDataForm = ({profile, handleSubmit, error}) =>{
+    let contacts = profile.contacts;
     return(
-            <form className={s.dataForm}>
+            <form onSubmit={handleSubmit} className={s.dataForm}>
+                <div className={s.error_message}>{error}</div>
                 <div className={s.dataForm__info}><span className={s.info__title}>Имя профиля:</span>{createField("Введите имя", "fullName", [], Input)}</div>
                 <div className={s.dataForm__info}><span className={s.info__title}>О себе:</span>{createField("Расскажите о вас", "aboutMe", [], Textarea)}</div>
                 <div className={s.dataForm__info}><span className={s.info__title}>Статус поиска работы:</span>
@@ -19,9 +21,17 @@ const ProfileDataForm = ({profile}) =>{
                     <span className={s.info__title}>Описание искомой вакансии:</span>
                     {createField("Расскажите о искомой вакансии", "lookingForAJobDescription", [], Textarea)}
                 </div>
-                <Contacts contacts={profile.contacts}/>
+                <div className={s.contacts}>
+                {Object.keys(contacts).map(contact=>{
+                        return(
+                        <div key={contact} className={s.contacts__contactBrick}>
+                            <span className={s.contactBrick__title}>{contact}:</span>
+                            <span className={s.contactBrick__value}>{createField(`Добавьте ссылку для ${contact}`, `contacts.${contact}`, [], Input)}</span>
+                        </div>);
+                    })}
+                </div>
                 <div className={s.dataForm__buttons_container}>
-                    <button className={s.buttons_container__button}>Сохранить изменения</button>
+                    <button type="submit" className={s.buttons_container__button}>Сохранить изменения</button>
                 </div>
             </form>
     )

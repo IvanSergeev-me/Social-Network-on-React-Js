@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import {setUserProfileThunk, getUserStatusThunk, updateUserStatusThunk, loadPictureThunk} from '../../redux/profile-reducer'
+import {setUserProfileThunk, getUserStatusThunk, updateUserStatusThunk, loadPictureThunk, saveProfileThunk} from '../../redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Preloader from '../common/Preloader/Preloader';
@@ -35,7 +35,7 @@ class ProfileContainerComponent extends React.PureComponent {
         return(
             <Profile authorisedUserId={this.props.authorisedUserId} profile={this.props.profile} 
             updateUserStatusThunk={this.props.updateUserStatusThunk} status={this.props.status}
-            loadPicture={this.props.loadPictureThunk} isOwner={isOwner}
+            loadPicture={this.props.loadPictureThunk} isOwner={isOwner} saveProfile={this.props.saveProfileThunk}
             />
         );      
     };
@@ -46,6 +46,6 @@ let mapStateToProps = (state) => ({
     status:state.profilePage.status
     
 });
-export default compose(connect(mapStateToProps, {setUserProfileThunk,getUserStatusThunk,updateUserStatusThunk, loadPictureThunk})
+export default compose(connect(mapStateToProps, {setUserProfileThunk,getUserStatusThunk,updateUserStatusThunk, loadPictureThunk, saveProfileThunk})
 ,withRouter
 )(ProfileContainerComponent);

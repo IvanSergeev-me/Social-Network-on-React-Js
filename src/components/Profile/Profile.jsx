@@ -7,7 +7,7 @@ const Profile = (props) =>{
     return(
         <section className={s.main_content}>
             <ProfileInfo authorisedUserId={props.authorisedUserId} profile={props.profile} loadPicture={props.loadPicture}  
-            status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} isOwner={props.isOwner}/>
+            status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} saveProfile={props.saveProfile} isOwner={props.isOwner}/>
             <PostsContainerComponent />
         </section>
         

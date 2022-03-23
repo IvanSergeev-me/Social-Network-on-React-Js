@@ -1,9 +1,11 @@
-import {ProfileAPI} from '../API/API.js';
+import {ProfileAPI} from '../API/API.js'
+import {stopSubmit} from 'redux-form';
 
 const ADD_POST = "profile-reducer/ADD-POST";
 const SET_USER_PROFILE = "profile-reducer/SET_USER_PROFILE";
 const SET_USER_STATUS = "profile-reducer/SET-USER-STATUS";
 const LOAD_PICTURE = "profile-reducer/LOAD_PICTURE";
+const SET_PROFILE_DATA = "profile-reducer/SET_PROFILE_DATA"
 
 let initialState = {
     postContent:[
@@ -41,6 +43,11 @@ const profileReducer = (state = initialState, action ) =>{
                 ...state,
                 status:action.status
             };  
+        case SET_PROFILE_DATA:
+            return{
+                ...state,
+                profile:{...state.profile}
+            }
         case LOAD_PICTURE:
             return{
                 ...state,
@@ -52,9 +59,9 @@ const profileReducer = (state = initialState, action ) =>{
 };
 export const addPostActionCreator = (newPostContent) =>({type:ADD_POST, newPostContent});
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile:profile});
+export const setProfileData = (data) =>({type:SET_PROFILE_DATA, data});
 export const setUserStatus = (status) => ({type:SET_USER_STATUS, status:status});
 export const loadPictureSuccess = (photos) => ({type:LOAD_PICTURE, photos})
-
 
 export const setUserProfileThunk = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getProfile(userId);
@@ -75,5 +82,21 @@ export const loadPictureThunk = (file) => async (dispatch) =>{
     if(response.data.resultCode === 0){
         dispatch(loadPictureSuccess(response.data.data.photos));
     };
+};
+export const saveProfileThunk = (profileData) => async (dispatch , getState) => {
+    let response = await ProfileAPI.saveProfile(profileData);
+    if (response.data.resultCode === 0){
+        const userId = getState().auth.data.id;
+        dispatch(setUserProfileThunk(userId));
+    }
+    else{
+        let message = response.data.messages[0];
+        let errorName = message.split('>')[1].toLowerCase();
+        const error = errorName.replace(/[^a-zа-яё]/gi, '').trim();
+        let errorObject = {"contacts":{[error]:message}};
+        dispatch(stopSubmit("edit-profile", errorObject));
+        return(Promise.reject(message));
+    }
+       
 };
 export default profileReducer;

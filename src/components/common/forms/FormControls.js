@@ -15,7 +15,8 @@ export const FormControl = ({input, meta: {touched, error}, children}) =>{
 // + " " + (hasError?s.login_form__input_error:"")
 export const Input = (props) =>{
     const {input, meta, child, ...restProps} = props;
-    return <FormControl {...props} ><input className={inputStyle.login_form__input} {...input} {...restProps}/> </FormControl>      
+    const hasError = meta.touched && meta.error;
+    return <FormControl {...props} ><input className={inputStyle.login_form__input + " " + (hasError?inputStyle.login_form__input_error:"")} {...input} {...restProps}/> </FormControl>      
 }
 export const Textarea = (props) => {
     const {input, meta, child, ...restProps} = props;

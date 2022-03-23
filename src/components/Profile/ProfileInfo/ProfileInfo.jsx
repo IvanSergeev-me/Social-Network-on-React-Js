@@ -21,6 +21,9 @@ const ProfileInfo = (props) =>{
         }
       }
     }
+    const onSubmit = (formData) =>{
+      props.saveProfile(formData).then(()=> setEditMode(false) );
+    }
     const activateEditMode = (e) =>{
       setEditMode(true);
       e.preventDefault();
@@ -40,7 +43,7 @@ const ProfileInfo = (props) =>{
                     </div>
                 </div>
                 <div className={s.additional_info}>
-                   {isEditMode?<ProfileDataForm profile={profile}/>:<ProfileData profile={profile} isOwner={isOwner} activateEditMode={activateEditMode}/>}
+                   {isEditMode?<ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>:<ProfileData profile={profile} isOwner={isOwner} activateEditMode={activateEditMode}/>}
                 </div>
             </div>  
     );
