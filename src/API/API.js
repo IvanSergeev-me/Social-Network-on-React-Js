@@ -41,15 +41,19 @@ export const ProfileAPI = {
     }
 };
 export const LoginApi = {
-    loginMe(email, password, rememberMe=false){
-        return instance.post(`auth/login`, {email, password, rememberMe});
+    loginMe(email, password, rememberMe=false, captcha=null){
+        return instance.post(`auth/login`, {email, password, rememberMe,captcha});
     },
     logoutMe(){
         return instance.delete(`auth/login`);
+    },
+    getCaptcha(){
+        return instance.get(`security/get-captcha-url`);
     }
 }
 export const getAuthorisedAPI = () =>{
     return instance.get(`auth/me`)
 };
+
 
 

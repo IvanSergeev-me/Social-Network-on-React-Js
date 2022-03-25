@@ -7,23 +7,18 @@ import { Redirect } from 'react-router';
 class LoginContainerComponent extends React.Component {
     constructor(props) {
         super(props);
-
-
     };
-    componentDidMount(){
-        
-    };
+
     render(){
         if(this.props.isAuth)return<Redirect to="/Profile"/>;
-        return(
-           
-            <Login loginThunk={this.props.loginThunk}/>
-        );
-        
+        return(   
+            <Login loginThunk={this.props.loginThunk} captchaUrl={this.props.captchaUrl}/>
+        );    
     };
 };
 
 let mapStateToProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 });
 

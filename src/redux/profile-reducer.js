@@ -96,7 +96,6 @@ export const saveProfileThunk = (profileData) => async (dispatch , getState) => 
         let errorObject = {"contacts":{[error]:message}};
         dispatch(stopSubmit("edit-profile", errorObject));
         return(Promise.reject(message));
-    }
-       
+    }      
 };
 export default profileReducer;

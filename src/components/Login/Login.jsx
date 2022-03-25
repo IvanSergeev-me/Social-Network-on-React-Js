@@ -3,14 +3,12 @@ import s from './Login.module.css';
 import home from '../../assets/images/home.svg';
 import { Field, reduxForm } from 'redux-form';
 import {requiredField, maxLength} from '../../assets/utils/validators/validator.js';
-import { Input } from '../common/forms/input';
+import { createField, Input } from '../common/forms/FormControls';
 
 const Login = (props) =>{
-    const onSubmit = (data) =>{
-        
+    const onSubmit = (data) =>{ 
         props.loginThunk(data);
     }
-    
     return(
         <section className={s.login_section}>
             <div className={s.login_wrapper}>
@@ -31,7 +29,7 @@ const Login = (props) =>{
                         <h2 className={s.title_login_above_form}>
                             Авторизация
                         </h2>
-                        <LoginReduxForm onSubmit={onSubmit}/>
+                        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>   
                     </div>
                 </div>
                 
@@ -43,12 +41,16 @@ const LoginForm = (props) =>{
     return(
         <form className={s.login_form} onSubmit={props.handleSubmit}>
             {props.error?<div className={s.form_login_password_error}>{props.error}</div>:null}
-            <Field validate={[requiredField,maxLength]} name="Email" placeholder={"Введите вашу почту"}  type="text" component={Input}/>
-            <Field validate={[requiredField,maxLength]} name="Password" placeholder={"Пароль"}  type="password" component={Input}/>
+            {createField("Введите вашу почту", "Email", [requiredField,maxLength] , Input)}
+            {createField("Пароль", "Password", [requiredField,maxLength] , Input, {type:"password"})}
             <div className={s.login_form__checkbox_container}>
                 <Field name="rememberMe" component={"input"} className={s.login_form__checkbox_container_checkbox} id="checkbox_rememberme" type="checkbox"/> 
                 <label htmlFor="checkbox_rememberme" className={s.login_form__checkbox_container_text}>Запомнить меня</label>
             </div>
+            {props.captchaUrl?<div className={s.captchaForm}>
+                    <img src={props.captchaUrl} alt="captcha" />
+                    {createField("Введите капчу", "captcha", [requiredField] , Input)}
+                </div>:null}
             <div className={s.login_form__buttons}>
                 <button className={s.login_form__button}>
                     Войти
